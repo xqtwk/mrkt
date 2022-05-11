@@ -1,4 +1,4 @@
 package lt.ku.hotel.entities;
 
-public class Feature {
+public class Booking {
 }

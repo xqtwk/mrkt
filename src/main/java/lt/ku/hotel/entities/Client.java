@@ -1,6 +1,7 @@
 package lt.ku.hotel.entities;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -37,14 +38,14 @@ public class Client implements UserDetails {
     @NotNull @NotEmpty(message = "Adresas privalomas")
     private String address;
     @Column(length = 64)
-    @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birth_date;
 
     @Column(nullable = false, length = 64)
     @Email(message = "El-paštas turi būti įvestas tinkamu formatu") @NotNull @NotEmpty(message = "El-paštas privalomas")
     private String username;
-    @Length(min = 3, max = 20, message = "Slaptažodis turi būti ilgesnis nei 3 simboliai ir ne ilgesnis nei 20 simboliai")
-    @NotNull @NotEmpty(message = "Telefonas privalomas")
+    @Column(nullable = false)
+    @NotEmpty(message = "slaptazodis privalomas")
     private String password;
     @Column(nullable = false)
     @NotEmpty
@@ -52,12 +53,12 @@ public class Client implements UserDetails {
 
     public Client(){}
 
-    public Client(String name, String surname, String phone, String address, Date birth_date, String username, String password) {
+    public Client(String name, String surname, String phone, Date birth_date, String address,  String username, String password) {
         this.name = name;
         this.surname = surname;
         this.phone = phone;
-        this.address = address;
         this.birth_date = birth_date;
+        this.address = address;
         this.username = username;
         this.password = password;
     }

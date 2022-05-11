@@ -36,3 +36,8 @@ hr.solid-divider {
  	background-blend-mode: soft-light;
 	
 }
+.nav-links-right{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}

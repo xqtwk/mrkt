@@ -3,6 +3,7 @@ package lt.ku.hotel.controller;
 import lt.ku.hotel.entities.Client;
 import lt.ku.hotel.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -35,23 +36,24 @@ public class AuthorizationController {
                             BindingResult result,
                             @RequestParam("name") String name,
                             @RequestParam("surname") String surname,
-                            @RequestParam("phone")String phone,
-                            @RequestParam("address")String address,
-                            @RequestParam("phone") Date birth_date,
                             @RequestParam("username") String username,
-                            @RequestParam("password") String password){
+                            @RequestParam("password") String password,
+                            @RequestParam("address")String address,
+                            @RequestParam("phone")String phone,
+                            @RequestParam("birth_date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date birth_date
+    ){
         if (result.hasErrors()){
             return "register";
         }else{
             client.setName(name);
+            client.setSurname(surname);
             client.setPhone(phone);
             client.setUsername(username);
             client.setPassword(password);
             client.setAddress(address);
-
-            client.setSurname(surname);
+            client.setBirth_date(birth_date);
             clientService.addClient(client);
-            return "redirect:/login/";}
+            return "redirect:/login";}
     }
 
     @RequestMapping("/login-error")

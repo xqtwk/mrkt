@@ -1,0 +1,41 @@
+/* Global style */
+*{
+	margin:0;
+	padding:0;
+}
+a{
+	text-decoration:none;
+}
+a:visited{
+	color:inherit;
+}
+/* Navbar style */
+.navbar{
+	width:100%;
+	height:70px;
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+	box-shadow: 0 0 4px 0 rgba(0,0,0,.5);
+}
+.nav-link{
+	margin:0px 10px;
+	font-size:18px;
+	font-family: 'Open Sans', sans-serif;
+}
+hr.solid-divider {
+  border-top: 3px solid black;
+}
+
+/* Room search container styles */
+.room-search-container{
+	width:100vw;
+	height:40vw;
+	background-image:url("./images/hotel-background.jpg");
+	
+}
+.image-overlay{
+	background:rgba(0,0,0, 0.5);
+	width:100%;
+	height:100%;
+}

@@ -1,11 +1,26 @@
-<html>
+<html lang="lt">
 <head>
 <meta charset="utf-8">
 <title>Viešbučio kambario nuomos sistema</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>
 <div th:insert="fragments/navigation.html :: nav"></div>
+	<main class="main-container">
+		<div class="room-search-container">
+		<div class="image-overlay"></div>
+			<div class="search-form-container">
+				<form>
+					<input type="date" placeholder="Atvykimo data">
+					<input type="date" placeholder="Išvykimo data">
+					<input type="number">
+				</form>
+			</div>
+		</div>
+	</main>
 </body>
 </html>

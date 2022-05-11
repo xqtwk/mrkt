@@ -1,5 +1,5 @@
 package lt.ku.hotel.repositories;
 
-public class ClientRepository {
+public interface ClientRepository {
 
 }

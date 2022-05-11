@@ -48,7 +48,7 @@ public class AuthorizationController {
             client.setUsername(username);
             client.setPassword(password);
             client.setAddress(address);
-            client.setBirth_date(birth_date);
+
             client.setSurname(surname);
             clientService.addClient(client);
             return "redirect:/login/";}

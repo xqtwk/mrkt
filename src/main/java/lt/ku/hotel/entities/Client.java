@@ -1,14 +1,9 @@
 package lt.ku.hotel.entities;
 
-<<<<<<< HEAD
-
-public class Client {
-=======
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
->>>>>>> f0ee823e4232831e526817dfd45baca12ba78e00
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;

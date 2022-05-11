@@ -1,5 +1,8 @@
 package lt.ku.hotel.repositories;
 
-public class ClientRepository {
+import lt.ku.hotel.entities.Client;
+import org.springframework.data.jpa.repository.JpaRepository;
 
+public interface ClientRepository extends JpaRepository<Client, Integer> {
+    Client findByUsername(String username);
 }

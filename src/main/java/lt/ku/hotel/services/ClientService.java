@@ -15,7 +15,7 @@ public class ClientService implements UserDetailsService {
     @Autowired
     ClientRepository clientRepository;
 
-    public Client addClients(Client client){
+    public Client addClient(Client client){
         client.setPassword((new BCryptPasswordEncoder()).encode(client.getPassword()));
         return clientRepository.save(client);
     }

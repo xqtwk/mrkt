@@ -42,7 +42,7 @@ public class Client implements UserDetails {
     @NotNull @NotEmpty(message = "Adresas privalomas")
     private String address;
     @Column(length = 64)
-    @NotNull @NotEmpty(message = "Gimimo data privaloma")
+    @NotNull
     private Date birth_date;
 
     @Column(nullable = false, length = 64)

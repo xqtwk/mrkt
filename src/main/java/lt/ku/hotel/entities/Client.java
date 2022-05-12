@@ -37,6 +37,7 @@ public class Client implements UserDetails {
     @Column(length = 64)
     @NotNull @NotEmpty(message = "Adresas privalomas")
     private String address;
+
     @Column(length = 64)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birth_date;

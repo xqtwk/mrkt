@@ -17,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Autowired
 	ClientService clientService;
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		BCryptPasswordEncoder bc=new BCryptPasswordEncoder();
@@ -25,9 +26,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.passwordEncoder(bc);
 	}
 	protected void configure(HttpSecurity http) throws Exception {
+		
 		http
 				.authorizeRequests()
-				.antMatchers("/*").permitAll()
+				.antMatchers("/**").permitAll()
+				.antMatchers("/login*").permitAll()
+				.antMatchers("/register*").permitAll()
 				.anyRequest().authenticated()
 
 				.and()

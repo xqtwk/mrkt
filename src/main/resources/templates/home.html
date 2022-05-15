@@ -2,10 +2,16 @@
 <head>
 <meta charset="utf-8">
 <title>Viešbučio kambario nuomos sistema</title>
+<meta content="width=device-width, initial-scale=1" name="viewport" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/lt.js"></script>
+
+<script src="/scripts.js" defer></script>
+<link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
@@ -13,14 +19,38 @@
 	<main class="main-container">
 		<div class="room-search-container">
 			<div class="search-form-container">
-				<form>
-					<input type="date" placeholder="Atvykimo data">
-					<input type="date" placeholder="Išvykimo data">
-					<input type="number">
-					<button type="submit" value="Submit">Ieškoti</button>
+				<form class="search-form" method="POST" action="/" th:object="${searchForm}">
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+					<div class="arrivalDate-wrapper">
+					<input th:value="*{arrivalDate}" name="arrivalDate" id="arrival-date" class="arrival-date-picker" type="text" placeholder="Atvykimo data">
+
+					<div class="search-input-error" th:if="${#fields.hasErrors('arrivalDate')}">
+									<ul class="error-list">
+										<li th:each="klaida: ${#fields.errors('arrivalDate')}" th:text="${klaida}"></li>
+									</ul>
+								</div>
+					</div>		
+					<div class="departureDate-wrapper">	
+					<input th:value="*{departureDate}" name="departureDate" id="departure-date" class="departure-date-picker" type="text" placeholder="Išvykimo data">
+					<div class="search-input-error" th:if="${#fields.hasErrors('departureDate')}">
+									<ul class="error-list">
+										<li th:each="klaida: ${#fields.errors('departureDate')}" th:text="${klaida}"></li>
+									</ul>
+								</div>
+					</div>
+					<div class="guestCount-wrapper">
+					<input th:value="*{guestCount}" min="1" id="guest-count-input" name="guestCount" type="number" placeholder="Svečių skaičius">
+								<div class="search-input-error" th:if="${#fields.hasErrors('guestCount')}">
+									<ul class="error-list">
+										<li th:each="klaida: ${#fields.errors('guestCount')}" th:text="${klaida}"></li>
+									</ul>
+								</div>
+							</div>	
+					<button type="submit" id="submit-search-button">Ieškoti</button>
 				</form>
 			</div>
 		</div>
 	</main>
+	
 </body>
 </html>

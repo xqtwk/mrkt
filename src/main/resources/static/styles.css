@@ -21,23 +21,123 @@ a:visited{
 .nav-link{
 	margin:0px 10px;
 	font-size:18px;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Inter', sans-serif;
 }
 hr.solid-divider {
   border-top: 3px solid black;
 }
-
-/* Room search container styles */
-.room-search-container{
-	width:100vw;
-	height:40vw;
-	background:url("./images/hotel-background.jpg") no-repeat fixed;
-	background-color: rgba(0, 0, 0, 0.7);
- 	background-blend-mode: soft-light;
-	
+.arrival-date-error{
+	color:white;
 }
 .nav-links-right{
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+}
+/* Room search container styles */
+.room-search-container{
+	position:relative;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	width:100%;
+	height:50vh;
+	background:url("./images/hotel-background.jpg") no-repeat fixed;
+	background-color: rgba(0, 0, 0, 0.7);
+ 	background-blend-mode: soft-light;
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+}
+.search-form-container{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+.search-form{
+	width:100%;
+	height:100%;
+	gap:1%;
+	display:flex;
+	justify-content:center;
+	align-items:baseline;
+}
+.arrivalDate-wrapper, .departureDate-wrapper, .guestCount-wrapper{
+	width:100%;
+	position:relative;
+	font-size:20px;
+	height:20%;
+	border:none;
+	font-family: 'Inter', sans-serif;
+	
+}
+
+.search-input-error{
+	list-style:none;
+	color:red;
+}
+.error-list{
+	list-style:none;
+}
+#arrival-date, #departure-date, #guest-count-input{
+	width:100%;
+	font-size:30px;
+	height:70px;
+	border:none;
+	padding:10px;
+	font-family: 'Inter', sans-serif;
+}
+#arrival-date:focus, #departure-date:focus,#guest-count-input:focus{
+	outline:3px solid #86301d;
+}
+#guest-count-input{
+	height:70px;
+	font-size:30px;
+
+	border:none;
+	padding:10px;
+	font-family: 'Inter', sans-serif;
+	width:100%;
+}
+#submit-search-button{
+	transition:background-color 0.3s;
+	cursor:pointer;
+	padding:10px;
+	height:70px;
+	font-size:30px;
+	border:1px solid #86301d;
+	background-color:#86301d;
+	color:white;
+}
+#submit-search-button:hover{
+	background-color:transparent;
+}
+.arrival-date-error{
+	width:100px;
+	color:white;
+	height:100px;
+	z-index:10;
+}
+/* Calendars */
+
+
+/* Media queries */
+@media only screen and (max-width: 768px) {
+	.room-search-container{
+	height:100vh;
+	width:100%;
+	}
+	.search-form{
+	  	flex-direction:column;
+	  	justify-content:center;
+	  	align-items:center;
+	  	gap:10px;
+	  }
+	  #submit-search-button{
+	  width:200px;
+	  }
+	  .nav-link{
+	  font-size:3vw;
+	  }
 }

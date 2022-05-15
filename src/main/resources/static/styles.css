@@ -121,7 +121,30 @@ hr.solid-divider {
 }
 /* Calendars */
 
+/* Room list */
+.room-list-heading{
+	text-align:center;
+	font-family:"Inter", sans-sarif;
+	margin-top:40px;
+}
+.divider
+{
+	position: relative;
+	height: 1px;
+	margin-top:5px;
+}
 
+.div-transparent:before
+{
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 5%;
+	right: 5%;
+	width: 90%;
+	height: 1px;
+	background-image: linear-gradient(to right, transparent, #86301d, transparent);
+}
 /* Media queries */
 @media only screen and (max-width: 768px) {
 	.room-search-container{

@@ -24,15 +24,15 @@ public class Client implements UserDetails {
 
 
     @Column(nullable = false, length = 64)
-    @Length(min = 3, max = 20, message = "Vardas turi būti ilgesnis nei 3 simboliai ir ne ilgesnis nei 20 simboliai")
+    @Length(min = 3, max = 20, message = "Vardas turi būti ilgesnis nei 3 simboliai ir trumpesnis nei 20 simbolių")
     @NotNull @NotEmpty(message = "Vardas privalomas")
     private String name;
     @Column(nullable = false, length = 64)
-    @Length(min = 3, max = 20, message = "Pavarde turi būti ilgesnis nei 3 simboliai ir ne ilgesnis nei 20 simboliai")
-    @NotNull @NotEmpty(message = "Pavarde privaloma")
+    @Length(min = 3, max = 20, message = "Pavardė turi būti ilgesnė nei 3 simboliai ir trumpesnė nei 20 simbolių")
+    @NotNull @NotEmpty(message = "Pavardė privaloma")
     private String surname;
     @Column(length = 64)
-    @Length(max = 15, message = "Telefonas turi būti ne ilgesnis nei 15 simboliu") @NotNull @NotEmpty(message = "Telefonas privalomas")
+    @Length(max = 15, message = "Telefonas turi būti ne ilgesnis nei 15 simbolių") @NotNull @NotEmpty(message = "Telefonas privalomas")
     private String phone;
     @Column(length = 64)
     @NotNull @NotEmpty(message = "Adresas privalomas")
@@ -46,7 +46,7 @@ public class Client implements UserDetails {
     @Email(message = "El-paštas turi būti įvestas tinkamu formatu") @NotNull @NotEmpty(message = "El-paštas privalomas")
     private String username;
     @Column(nullable = false)
-    @NotEmpty(message = "slaptazodis privalomas")
+    @NotEmpty(message = "Slaptažodis privalomas")
     private String password;
     @Column(nullable = false)
     @NotEmpty

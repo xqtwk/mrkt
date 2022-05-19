@@ -8,7 +8,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import lt.ku.hotel.entities.SearchForm;
 
@@ -25,13 +26,17 @@ public class HomeController {
 			@Valid 
 			@ModelAttribute SearchForm searchForm,
 			BindingResult result,
-			Model model) {
+			Model model,
+			 final RedirectAttributes redirectAttrs) {
 		if(result.hasErrors()) {
 			model.addAttribute("search", new SearchForm());
 			return "home";
 		}
-		model.addAttribute("search", new SearchForm());
-		
-		return "home";
+		String url = UriComponentsBuilder.fromUriString("/rooms")
+				.queryParam("arrival", searchForm.getArrivalDate())
+				.queryParam("departure", searchForm.getDepartureDate())
+				.queryParam("guestCount", searchForm.getGuestCount().toString())
+				.build().toUriString();
+		return "redirect:"+url;
 	}
 }

@@ -1,6 +1,7 @@
 package lt.ku.hotel.entities;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,7 +27,8 @@ public class Room {
 	@Column
 	private Integer guest_limit;
 	
-	@Column String description;
+	@Column(columnDefinition="TEXT")
+	String description;
 	
 	@Column(precision = 10, scale=2)
 	private BigDecimal price;
@@ -33,13 +36,13 @@ public class Room {
 	@Column
 	private String thumbnail;
 	
-	@Column
-	private boolean is_reserved;
 	
 	@ManyToOne
 	@JoinColumn(name="type_ID", nullable = false)
 	private RoomType room_type;
 	
+	@OneToMany(mappedBy = "room")
+	private List<Booking> bookings;
 	
 	public Room() {
 		super();
@@ -53,7 +56,6 @@ public class Room {
 		this.description = description;
 		this.price = price;
 		this.thumbnail = thumbnail;
-		this.is_reserved = is_reserved;
 	}
 
 	public Integer getId() {
@@ -104,13 +106,5 @@ public class Room {
 		this.thumbnail = thumbnail;
 	}
 
-	public boolean isIs_reserved() {
-		return is_reserved;
-	}
-
-	public void setIs_reserved(boolean is_reserved) {
-		this.is_reserved = is_reserved;
-	}
-	
 	
 }

@@ -17,8 +17,8 @@ public class RoomService {
 	public List<Room> getAllRooms(){
 		return roomRepository.findAll();
 	}
-	public List<Room> getAllUnreservedRooms(){
-		return roomRepository.findAllUnreservedRooms();
+	public List<Room> getAllUnreservedRooms(String arrivalDate, String departureDate, String guestCount){
+		return roomRepository.findAllUnreservedRooms(arrivalDate, departureDate, guestCount);
 	}
 	public Room getRoom(Integer id) {
 		return roomRepository.getById(id);
@@ -31,7 +31,6 @@ public class RoomService {
 		Room old = roomRepository.getById(room.getId());
 		old.setDescription(room.getDescription());
 		old.setGuest_limit(room.getGuest_limit());
-		old.setIs_reserved(room.isIs_reserved());
 		old.setPrice(room.getPrice());
 		old.setRoom_size(room.getRoom_size());
 		old.setThumbnail(room.getThumbnail());

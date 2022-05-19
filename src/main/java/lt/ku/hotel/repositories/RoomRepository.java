@@ -2,6 +2,7 @@ package lt.ku.hotel.repositories;
 
 import java.util.List;
 
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -10,7 +11,15 @@ import lt.ku.hotel.entities.Room;
 
 @Repository
 public interface RoomRepository extends JpaRepository<Room, Integer>{
-	@Query("SELECT r FROM Room r WHERE r.is_reserved = 0")
-	List<Room> findAllUnreservedRooms();
+	@Query(value ="SELECT * from room\r\n"
+			+ "  WHERE room.id NOT IN(\r\n"
+			+ "  SELECT bookings.roomid\r\n"
+			+ "  FROM bookings\r\n"
+			+ "  INNER JOIN room ON bookings.roomid = room.id\r\n"
+			+ "  WHERE bookings.check_in <= :arrivalDate\r\n"
+			+ "  AND bookings.check_out >= :departureDate\r\n"
+			+ "  ) AND room.guest_limit >= :guestCount", nativeQuery = true)
+	
+	List<Room> findAllUnreservedRooms(String arrivalDate, String departureDate, String guestCount);
 	
 }

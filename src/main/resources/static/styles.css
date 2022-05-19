@@ -145,6 +145,63 @@ hr.solid-divider {
 	height: 1px;
 	background-image: linear-gradient(to right, transparent, #86301d, transparent);
 }
+/* Register styles */
+
+.register-container{
+	display:flex;
+	align-items: center;
+	justify-content:center;
+	margin: 0;
+  	position: absolute;
+  	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+  	
+}
+.register-form{
+	padding:20px;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	justify-content:center;
+	gap:10px;
+}
+.register-input-wrapper{
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+	font-family: 'Inter', sans-sarif;
+	font-size:20px;
+}
+
+.register-input{
+	font-family: 'Inter', sans-sarif;
+	font-size:20px;
+	width:20rem;
+	height:30px;
+}
+.register-input:focus{
+	outline: none !important;
+    border:2px solid #86301d;
+}
+.register-submit{
+	cursor:pointer;
+	margin-top:20px;
+	background-color: #86301d;
+	border:none;
+	color:white;
+	width:125px;
+	height:50px;
+}
+.register-error-wrapper{
+	font-family: 'Inter', sans-sarif;
+	font-size:20px;
+	align-self:flex-start;
+}
+.register-error{
+	width:100%;
+}
 /* Media queries */
 @media only screen and (max-width: 768px) {
 	.room-search-container{

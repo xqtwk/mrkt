@@ -36,8 +36,8 @@ public class ClientService implements UserDetailsService {
     }
     public List<Client> getAllClients() { return clientRepository.findAll(); }
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Client client = clientRepository.findByUsername(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Client client = clientRepository.findByEmail(email);
         if (client==null) {
             throw new UsernameNotFoundException("Vartotojas nerastas");
         }

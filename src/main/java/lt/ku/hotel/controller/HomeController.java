@@ -30,6 +30,7 @@ public class HomeController {
 			 final RedirectAttributes redirectAttrs) {
 		if(result.hasErrors()) {
 			model.addAttribute("search", new SearchForm());
+			System.out.println(result.toString());
 			return "home";
 		}
 		String url = UriComponentsBuilder.fromUriString("/rooms")

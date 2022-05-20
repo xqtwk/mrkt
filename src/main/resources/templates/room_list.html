@@ -15,7 +15,15 @@
 <div class="divider div-transparent"></div>
 <div class="rooms-container">
 	<div th:each="room: ${rooms}" class="room-wrapper">
-		<div th:text="${room.description}"></div>
+		<img class="room-thumbnail" th:src="@{${'./images/'+room.thumbnail}}" width="300" height="300" alt="hotel room photo">
+		<div class="room-description" th:text="${room.description}"></div>
+		<div class="price-container">
+		<p th:text="${room.price} + '€' + ' - kaina parai' "></p>
+		<form method="POST">
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+		<button class="reservation-button" type="submit">Rezervuoti</button>
+		</form>
+		</div>
 	</div>
 
 </div>

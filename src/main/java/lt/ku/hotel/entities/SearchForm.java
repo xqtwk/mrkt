@@ -6,8 +6,10 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Range;
 
+import lt.ku.hotel.validation.DateCompare;
 import lt.ku.hotel.validation.DateConstraint;
 
+@DateCompare(arrivalDate = "arrivalDate", departureDate = "departureDate")
 public class SearchForm {
 	
 	@DateConstraint

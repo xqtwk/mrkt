@@ -16,8 +16,8 @@ public interface RoomRepository extends JpaRepository<Room, Integer>{
 			+ "  SELECT bookings.roomid\r\n"
 			+ "  FROM bookings\r\n"
 			+ "  INNER JOIN room ON bookings.roomid = room.id\r\n"
-			+ "  WHERE bookings.check_in <= :arrivalDate\r\n"
-			+ "  AND bookings.check_out >= :departureDate\r\n"
+			+ "  WHERE bookings.check_out >= :arrivalDate\r\n"
+			+ "  AND bookings.check_in <= :departureDate\r\n"
 			+ "  ) AND room.guest_limit >= :guestCount", nativeQuery = true)
 	
 	List<Room> findAllUnreservedRooms(String arrivalDate, String departureDate, String guestCount);

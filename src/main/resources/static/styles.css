@@ -173,7 +173,17 @@ hr.solid-divider {
 	font-size:23px;
 	gap:20px;
 }
+.more-info-button{
+	cursor:pointer;
+	border:none;
+	background-color:#86301d;
+	color:white;
+	font-family:"Inter", sans-sarif;
+	font-size:20px;
+	padding:15px 40px;
+}
 .reservation-button{
+	cursor:pointer;
 	border:none;
 	background-color:#86301d;
 	color:white;

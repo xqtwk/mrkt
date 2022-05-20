@@ -19,7 +19,7 @@ public class RoomsController {
 	RoomService roomService;
 	
 	
-	@GetMapping("/rooms*")
+	@GetMapping("/rooms")
 	public String allUnreservedRoomsList(Model model,
 			@RequestParam(required = false) String arrival,
 			@RequestParam(required = false) String departure,
@@ -27,6 +27,9 @@ public class RoomsController {
 		if(arrival == null || departure == null || guestCount == null) {
 			return "redirect:/";
 		}
+		model.addAttribute("arrivalDate", arrival);
+		model.addAttribute("departureDate", departure);
+		model.addAttribute("guestCount", guestCount);
 		model.addAttribute("rooms", roomService.getAllUnreservedRooms(arrival, departure, guestCount));
 		
 		return "room_list";

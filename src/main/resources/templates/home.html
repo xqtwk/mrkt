@@ -29,6 +29,8 @@
 										<li th:each="klaida: ${#fields.errors('arrivalDate')}" th:text="${klaida}"></li>
 									</ul>
 								</div>
+					<div th:if="${#fields.hasGlobalErrors()}" th:each="err : ${#fields.errors('global')}" class="search-input-error" th:text="${err}">
+					</div>
 					</div>		
 					<div class="departureDate-wrapper">	
 					<input th:value="*{departureDate}" name="departureDate" id="departure-date" class="departure-date-picker" type="text" placeholder="Išvykimo data">

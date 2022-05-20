@@ -15,7 +15,10 @@
 	
 </head>
 <body>
-<div class="register-container">
+	<h1 class="register-heading">Registracija</h1>
+	<div class="divider div-transparent"></div>
+	<div class="register-container">
+					
                     <form method="post" class="register-form" action="/register" th:object="${client}">
                         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                         

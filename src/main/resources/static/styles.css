@@ -147,16 +147,11 @@ hr.solid-divider {
 }
 /* Register styles */
 
-.register-container{
-	display:flex;
-	align-items: center;
-	justify-content:center;
-	margin: 0;
-  	position: absolute;
-  	top: 50%;
-  	left: 50%;
-  	transform: translate(-50%, -50%);
-  	
+
+.register-heading{
+	text-align:center;
+	font-family:"Inter", sans-sarif;
+	margin-top:80px;
 }
 .register-form{
 	padding:20px;
@@ -186,13 +181,15 @@ hr.solid-divider {
     border:2px solid #86301d;
 }
 .register-submit{
+	font-family:"Inter", sans-sarif;
+	font-size:25px;
 	cursor:pointer;
 	margin-top:20px;
 	background-color: #86301d;
 	border:none;
 	color:white;
-	width:125px;
-	height:50px;
+	padding:20px 35px;
+	
 }
 .register-error-wrapper{
 	font-family: 'Inter', sans-sarif;
@@ -201,6 +198,51 @@ hr.solid-divider {
 }
 .register-error{
 	width:100%;
+}
+/* login styles */
+.login-heading{
+	text-align:center;
+	font-family:"Inter", sans-sarif;
+	margin-top:80px;
+}
+
+.login-form{
+	font-family:"Inter", sans-sarif;
+	padding:20px;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	justify-content:center;
+	gap:10px;
+}
+.login-input-container{
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+}
+.login-submit-button{
+	font-family:"Inter", sans-sarif;
+	font-size:25px;
+	cursor:pointer;
+	margin-top:20px;
+	background-color: #86301d;
+	border:none;
+	color:white;
+	padding:20px 35px;
+}
+.login-input{
+	font-family: 'Inter', sans-sarif;
+	font-size:20px;
+	width:20rem;
+	height:30px;
+}
+.login-input:focus{
+	outline: none !important;
+    border:2px solid #86301d;
+}
+.login-label{
+	font-size:20px;
 }
 /* Media queries */
 @media only screen and (max-width: 768px) {

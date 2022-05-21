@@ -61,15 +61,28 @@
 		                            </ul>
                         		</div>
                             </div>
-                            
+                            <div class="register-input-wrapper">
+                            <label class="register-label" for="register_address">Miestas: *</label>
+                            <select class="register-input" name="cityId">
+                            	<option th:each="city: ${cities}" th:value="${city.id}" th:text="${city.name}">
+                            </select>
+                            <div class="register-error-wrapper" th:if="${#fields.hasErrors('city')}">
+		                            <ul class="register-error-list">
+		                                <li class="register-error" th:each="error: ${#fields.errors('city')}" th:text="${error}"></li>
+		                            </ul>
+                        		</div>
+                            </div>
+                            <div class="register-input-wrapper">
+                            <label class="register-label" for="register_address">Lytis: *</label>
+                            <select class="register-input" name="genderId">
+                            	<option th:each="gender: ${genders}" th:value="${gender.id}" th:text="${gender.name}">
+                            </select>
+                           
+                            </div>
                             <div class="register-input-wrapper">
                             <label class="register-label" for="register_address">Adresas: *</label>
                             <input class="register-input" id="register_address" type="text" name="address" th:value="*{address}">
-                            <div class="register-error-wrapper" th:if="${#fields.hasErrors('address')}">
-		                            <ul class="register-error-list">
-		                                <li class="register-error" th:each="error: ${#fields.errors('address')}" th:text="${error}"></li>
-		                            </ul>
-                        		</div>
+                            
                             </div>
                             
                             <div class="register-input-wrapper">

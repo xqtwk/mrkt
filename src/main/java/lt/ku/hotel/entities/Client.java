@@ -13,6 +13,7 @@ import lt.ku.hotel.validation.FieldsValueMatch;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
@@ -71,21 +72,46 @@ public class Client implements UserDetails {
     @OneToMany(mappedBy = "client")
 	private List<Booking> bookings;
     
+    @ManyToOne
+    @JoinColumn(name="gender_ID", nullable = false)
+    private Gender gender;
+    
+    @ManyToOne
+    @JoinColumn(name="city_ID", nullable = false)
+    private City city;
+    
     public Client(){}
 
     
-    public Client(String name, String surname, String phone, String birthDate, String address,  String email, String password, String repeatPassword, String type) {
-        this.name = name;
-        this.surname = surname;
-        this.phone = phone;
-        this.birthDate = birthDate;
-        this.address = address;
-        this.email = email;
-        this.password = password;
-        this.type = type;
-    }
+    
 
-    public Integer getId() {
+    public Client(
+			@Length(min = 3, max = 20, message = "Vardas turi būti ilgesnis nei 3 simboliai ir trumpesnis nei 20 simbolių") @NotNull @NotEmpty(message = "Vardas privalomas") String name,
+			@Length(min = 3, max = 20, message = "Pavardė turi būti ilgesnė nei 3 simboliai ir trumpesnė nei 20 simbolių") @NotNull @NotEmpty(message = "Pavardė privaloma") String surname,
+			@Length(max = 15, message = "Telefonas turi būti ne ilgesnis nei 15 simbolių") @NotNull @NotEmpty(message = "Telefonas privalomas") String phone,
+			@NotNull @NotEmpty(message = "Adresas privalomas") String address, String birthDate,
+			@Email(message = "Netinkamas El. paštas", regexp = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$") @NotEmpty(message = "El-paštas privalomas") String email,
+			@NotEmpty(message = "Slaptažodis privalomas") String password, @NotEmpty String type,
+			List<Booking> bookings, @NotBlank(message = "Pasirinkite lytį") Gender gender,
+			@NotBlank(message = "Pasirinkite miestą") City city) {
+		super();
+		this.name = name;
+		this.surname = surname;
+		this.phone = phone;
+		this.address = address;
+		this.birthDate = birthDate;
+		this.email = email;
+		this.password = password;
+		this.type = type;
+		this.bookings = bookings;
+		this.gender = gender;
+		this.city = city;
+	}
+
+
+
+
+	public Integer getId() {
         return id;
     }
 
@@ -166,7 +192,32 @@ public class Client implements UserDetails {
     }
     
     
-    @Override
+    public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
+
+
+
+	public City getCity() {
+		return city;
+	}
+
+
+
+
+	public void setCity(City city) {
+		this.city = city;
+	}
+
+
+
+
+	@Override
 	public String getUsername() {
 		return email;
 	}

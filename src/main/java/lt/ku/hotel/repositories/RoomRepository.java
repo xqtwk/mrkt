@@ -21,5 +21,14 @@ public interface RoomRepository extends JpaRepository<Room, Integer>{
 			+ "  ) AND room.guest_limit >= :guestCount", nativeQuery = true)
 	
 	List<Room> findAllUnreservedRooms(String arrivalDate, String departureDate, String guestCount);
+	@Query(value ="SELECT COUNT(room.id) from room\r\n"
+			+ "  WHERE room.id NOT IN(\r\n"
+			+ "  SELECT bookings.roomid\r\n"
+			+ "  FROM bookings\r\n"
+			+ "  INNER JOIN room ON bookings.roomid = room.id\r\n"
+			+ "  WHERE bookings.check_out >= :arrivalDate\r\n"
+			+ "  AND bookings.check_in <= :departureDate\r\n"
+			+ "  ) AND room.guest_limit >= :guestCount AND room.id = :roomId LIMIT 1", nativeQuery = true)
+	Integer checkIfReserved(Integer roomId, String arrivalDate, String departureDate, Integer guestCount);
 	
 }

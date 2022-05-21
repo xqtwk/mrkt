@@ -41,5 +41,9 @@ public class RoomService {
 	public void deleteRoom(Integer id) {
 		roomRepository.deleteById(id);
 	}
-	
+	public boolean isRoomReserved(Integer roomId, String arrivalDate, String departureDate, Integer guestCount) {
+		Integer isUnreserved = roomRepository.checkIfReserved(roomId, arrivalDate, departureDate, guestCount);
+		if(isUnreserved == 1) return false;
+		return true;
+	}
 }

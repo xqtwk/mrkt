@@ -6,17 +6,18 @@
 		
 			<div class="nav-links-left">
 				<a class="nav-link" href="/">Pagrindinis</a>
-				<a class="nav-link" href="/">Mano rezervacijos</a>
+				<a class="nav-link" sec:authorize="isAuthenticated()" href="/">Mano rezervacijos</a>
 			</div>
 			<div class="nav-links-right">
 				<div sec:authorize="isAuthenticated()" class="nav-link">
 					Sveiki: <span sec:authentication="name"></span>
 				</div>
+				
+				<a class="nav-link" sec:authorize="!isAuthenticated()" href="/register">Registruotis</a>
+				<a class="nav-link" sec:authorize="!isAuthenticated()" href="/login">Prisijungti</a>
 				<div sec:authorize="isAuthenticated()">
 					<a href="/logout" class="nav-link">Atsijungti</a>
 				</div>
-				<a class="nav-link" href="/register" sec:authorize="!isAuthenticated()">Registruotis</a>
-				<a class="nav-link" href="/login" sec:authorize="!isAuthenticated()">Prisijungti</a>
 			</div>
 
 	</nav>

@@ -18,7 +18,7 @@
 		
 		<div th:text="'Atvykimo data: ' + ${arrivalDate}"></div>
 		<div th:text="'Išvykimo data: ' + ${departureDate}"></div>
-		<div th:text="'Apgyvendinimo laikotarpis: ' + ${dayCount} + ' dienų'"></div>
+		<div th:text="'Apgyvendinimo laikotarpis: ' + ${dayCount} + ' dienų'" id="days"></div>
 		<div th:text="'Svečių skaičius: ' + ${guestCount}"></div>
 		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 		<input type="hidden" name="roomId" th:value="${roomId}">

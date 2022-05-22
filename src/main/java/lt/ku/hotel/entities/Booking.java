@@ -44,7 +44,10 @@ public class Booking {
 	
 	@Column
 	private java.time.LocalDate checkOut;
-	
+
+	@Column
+	private long day_count;
+
 	@Column
 	private boolean services;
 	
@@ -71,7 +74,7 @@ public class Booking {
 	}
 	
 
-	public Booking(LocalDate checkIn, Integer clientID, Integer roomID, LocalDate checkOut,
+	public Booking(LocalDate checkIn, Integer clientID, Integer roomID, LocalDate checkOut, long day_count,
 			boolean services, boolean meals, BigDecimal totalPrice) {
 		super();
 		this.checkIn = checkIn;
@@ -81,6 +84,7 @@ public class Booking {
 		this.services = services;
 		this.meals = meals;
 		this.totalPrice = totalPrice;
+		this.day_count = day_count;
 	}
 
 
@@ -172,7 +176,12 @@ public class Booking {
 	public void setCheckOut(java.time.LocalDate checkOut) {
 		this.checkOut = checkOut;
 	}
-	
-	
-	
+
+	public long getDay_count() {
+		return day_count;
+	}
+
+	public void setDay_count(long day_count) {
+		this.day_count = day_count;
+	}
 }

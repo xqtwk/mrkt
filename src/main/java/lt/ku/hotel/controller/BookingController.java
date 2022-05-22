@@ -48,7 +48,7 @@ public class BookingController {
 			model.addAttribute("guestCount", guestCount);
 			long noOfDaysBetween = ChronoUnit.DAYS.between(LocalDate.parse(arrival), LocalDate.parse(departure));
 			model.addAttribute("dayCount", noOfDaysBetween);
-			
+
 			return "reservation";
 		}catch(DateTimeParseException e) {
 			return "redirect:/";
@@ -90,7 +90,8 @@ public class BookingController {
 			
 			Client client = (Client) authentication.getPrincipal(); //atkomentuoti jei yra norima gaut PRISIJUNGUSIO kliento id
 			Integer userId = client.getId();
-			bookingService.addBooking(new Booking(LocalDate.parse(arrival), userId, roomId, LocalDate.parse(departure), isServicesChecked, isMealsChecked,totalPrice));
+			long day_count = ChronoUnit.DAYS.between(LocalDate.parse(arrival), LocalDate.parse(departure));
+			bookingService.addBooking(new Booking(LocalDate.parse(arrival), userId, roomId, LocalDate.parse(departure), day_count, isServicesChecked, isMealsChecked,totalPrice));
 			return "redirect:/";
 			
 		}catch(DateTimeParseException e) {

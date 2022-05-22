@@ -1,5 +1,6 @@
 package lt.ku.hotel.entities;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -38,8 +39,18 @@ public class Booking {
 	@JoinColumn(name="clientID", nullable = false, insertable = false, updatable = false)
 	private Client client;
 	
+	@Column
 	private java.time.LocalDate checkOut;
-
+	
+	@Column
+	private boolean services;
+	
+	@Column 
+	private boolean meals;
+	
+	@Column(precision = 10, scale = 2)
+	private BigDecimal totalPrice;
+	
 	
 	public Booking() {
 		super();
@@ -54,6 +65,49 @@ public class Booking {
 		this.room = room;
 		this.client = client;
 		this.checkOut = checkOut;
+	}
+	
+
+	public Booking(LocalDate checkIn, Integer clientID, Integer roomID, LocalDate checkOut,
+			boolean services, boolean meals, BigDecimal totalPrice) {
+		super();
+		this.checkIn = checkIn;
+		this.clientID = clientID;
+		this.roomID = roomID;
+		this.checkOut = checkOut;
+		this.services = services;
+		this.meals = meals;
+		this.totalPrice = totalPrice;
+	}
+
+
+	public boolean isServices() {
+		return services;
+	}
+
+
+	public void setServices(boolean services) {
+		this.services = services;
+	}
+
+
+	public boolean isMeals() {
+		return meals;
+	}
+
+
+	public void setMeals(boolean meals) {
+		this.meals = meals;
+	}
+
+
+	public BigDecimal getTotalPrice() {
+		return totalPrice;
+	}
+
+
+	public void setTotalPrice(BigDecimal totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 
 

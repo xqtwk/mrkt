@@ -28,6 +28,7 @@ public class BookingController {
 	@Autowired
 	BookingService bookingService;
 	//@RequestMapping(value="room", method = RequestMethod.GET)
+
 	@GetMapping("/reserve")
 	public String getReservation(Model model,
 			@RequestParam(required = false, value = "roomId") Integer roomId,
@@ -103,6 +104,7 @@ public class BookingController {
 	}
 	@GetMapping("/reservations")
 	public String getReservations(Model model){
+		model.addAttribute("booking", bookingService.getAllBookings());
 		return "reservations";
 	}
 }

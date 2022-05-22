@@ -44,6 +44,8 @@ public class Room {
 	@OneToMany(mappedBy = "room")
 	private List<Booking> bookings;
 	
+	@OneToMany(mappedBy = "room")
+	private List<Picture> pictures;
 	public Room() {
 		super();
 	}

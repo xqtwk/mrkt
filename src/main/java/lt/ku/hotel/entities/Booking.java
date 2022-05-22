@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -29,12 +30,14 @@ public class Booking {
 	@Id
 	private Integer roomID;
 	
-	@OneToOne
+	
+	
+	@ManyToOne
 	@MapsId
 	@JoinColumn(name="roomID", nullable = false, insertable = false, updatable = false)
 	private Room room;
 	
-	@OneToOne
+	@ManyToOne
 	@MapsId
 	@JoinColumn(name="clientID", nullable = false, insertable = false, updatable = false)
 	private Client client;

@@ -3,11 +3,17 @@ package lt.ku.hotel.classes;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+
 public class BookingId implements Serializable{
+	
+	@Column
 	private java.time.LocalDate checkIn;
 	
+	@Column
 	private Integer clientID;
 	
+	@Column
 	private Integer roomID;
 
 	

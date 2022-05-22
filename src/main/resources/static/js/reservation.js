@@ -24,7 +24,7 @@ function printF1func() {
         } else {
             printF1.innerHTML += parseFloat(printF1.innerHTML) + booking.meals.value;
         }
-    } else {
+} else {                                                                   // template for all
         if (isNaN(parseFloat(printF1.innerHTML))){
             printF1.innerHTML -= printF1.innerHTML;
         } else {

@@ -14,7 +14,7 @@
  <div class="reservation-confirm-container">
  	<div>
 	
-	<form method="POST" action="/reserve" class="reservation-confirm-form" th:object="${booking}">
+	<form method="POST" action="/reserve" class="reservation-confirm-form" th:object="${booking}" name="booking">
 		<div th:text="'Atvykimo data: ' + ${arrivalDate}"></div>
 		<div th:text="'Išvykimo data: ' + ${departureDate}"></div>
 		<div th:text="'Apgyvendinimo laikotarpis: ' + ${dayCount} + ' dienų'"></div>
@@ -33,12 +33,12 @@
 		<input type="checkbox" value="20.00" name="services" id="servicesCheckbox">
 		<span class="checkmark"></span>
 		Kambarių aptarnavimas (+20€)
-		
+
 		</label>
 		
 		<div class="reservation-price-container">
 			Visa suma:
-			<div class="actual-price" th:text="${roomPrice} + '€'">
+			<div class="actual-price" id="total">
 			
 			</div>
 		</div>

@@ -1,6 +1,6 @@
 package lt.ku.hotel.configuration;
 
-import lt.ku.hotel.services.ClientService;
+import lt.ku.hotel.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Autowired
-	ClientService clientService;
+	UserService clientService;
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -29,13 +29,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		
 		http
 				.authorizeRequests()
+				.antMatchers("/admin").permitAll() //.hasAuthority("admin") TURN ON AUTHORITIES
+				.antMatchers("/update_users").permitAll()
+				.antMatchers("/update").permitAll()
 				.antMatchers("/**").permitAll()
 				.antMatchers("/login*").permitAll()
 				.antMatchers("/register*").permitAll()
 				.antMatchers("/rooms*").permitAll()
 				.antMatchers("/reserve*").permitAll()
 				.antMatchers("/reservations*").permitAll()
-				.anyRequest().authenticated()
+				.anyRequest().authenticated() // hasAuthority("user")
 
 				.and()
 				.formLogin()

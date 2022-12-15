@@ -2,24 +2,32 @@
 <head>
 	<meta charset="UTF-8">
 </head>
-	<nav class="navbar">
-		
-			<div class="nav-links-left">
-				<a class="nav-link" href="/">Pagrindinis</a>
-				<a class="nav-link" sec:authorize="isAuthenticated()" href="/reservations" >Mano rezervacijos</a>
-			</div>
-			<div class="nav-links-right">
-				<div sec:authorize="isAuthenticated()" class="nav-link">
-					Sveiki: <span sec:authentication="name"></span>
-				</div>
-				
-				<a class="nav-link" sec:authorize="!isAuthenticated()" href="/register">Registruotis</a>
-				<a class="nav-link" sec:authorize="!isAuthenticated()" href="/login">Prisijungti</a>
-				<div sec:authorize="isAuthenticated()">
-					<a href="/logout" class="nav-link">Atsijungti</a>
-				</div>
-			</div>
 
-	</nav>
-	<hr class="solid-divider">
+<nav class="navbar-th">
+	<div class="nav-link-th-left">
+		<span class="nav-link-th ptt">PlacetoTrade</span>
+		<a class="nav-link-th" href="/">Pagrindinis</a>
+		<a class="nav-link-th" sec:authorize="isAuthenticated()" href="/mano" >Mano skelbimai</a>
+		<a class="nav-link-th" sec:authorize="isAuthenticated()" href="/naujas_skelbimas" ><b>Pridėti skelbimą</b></a>
+	</div>
+	<div class="nav-link-ths-right">
+		<div sec:authorize="isAuthenticated()" class="nav-link-th">
+			<div class="dropdown">
+				<button sec:authentication="name" class="navbutton"></button>
+				<div class="dropdown-content">
+					<a href="https://blog.hubspot.com/">Profilis</a>
+					<a href="https://academy.hubspot.com/">Nustatymai</a>
+					<a href="/admin" sec:authorize="hasAuthority('admin')">Sistemos valdymo skydelis</a>
+					<a href="/logout" >Atsijungti</a>
+				</div>
+			</div>
+		</div>
+
+		<a class="nav-link-th" sec:authorize="!isAuthenticated()" href="/register">Registruotis</a>
+		<a class="nav-link-th" sec:authorize="!isAuthenticated()" href="/login">Prisijungti</a>
+
+	</div>
+
+</nav>
+<hr class="solid-divider">
 </html>

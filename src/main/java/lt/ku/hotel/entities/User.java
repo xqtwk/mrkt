@@ -3,33 +3,29 @@ package lt.ku.hotel.entities;
 import org.hibernate.validator.constraints.Length;
 
 
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import lt.ku.hotel.validation.DateConstraint;
-import lt.ku.hotel.validation.FieldsValueMatch;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
+
 
 
 
 @Entity
-@Table( name = "client")
-public class Client implements UserDetails {
+@Table( name = "user")
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
 
 
     @Column(nullable = false, length = 64)
@@ -45,14 +41,7 @@ public class Client implements UserDetails {
     @Column(length = 64)
     @Length(max = 15, message = "Telefonas turi būti ne ilgesnis nei 15 simbolių") @NotNull @NotEmpty(message = "Telefonas privalomas")
     private String phone;
-    
-    @Column(length = 64)
-    @NotNull @NotEmpty(message = "Adresas privalomas")
-    private String address;
 
-    @Column(length = 64)
-    @DateConstraint
-    private String birthDate;
 
     @Column(nullable = false, length = 64, unique = true)
     @Email(message="Netinkamas El. paštas", regexp = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@" 
@@ -67,45 +56,28 @@ public class Client implements UserDetails {
     
     @Column(nullable = false)
     @NotEmpty
-    private String type = "user";
+    private String type = "user";    // ADMINISTRATORIAUS SUKURIMUI KEISK I "admin"
     
-    @OneToMany(mappedBy = "client")
-	private List<Booking> bookings;
     
-    @ManyToOne
-    @JoinColumn(name="gender_ID", nullable = false)
-    private Gender gender;
-    
-    @ManyToOne
-    @JoinColumn(name="city_ID", nullable = false)
-    private City city;
-    
-    public Client(){}
+    public User(){}
 
     
     
 
-    public Client(
+    public User(
 			@Length(min = 3, max = 20, message = "Vardas turi būti ilgesnis nei 3 simboliai ir trumpesnis nei 20 simbolių") @NotNull @NotEmpty(message = "Vardas privalomas") String name,
 			@Length(min = 3, max = 20, message = "Pavardė turi būti ilgesnė nei 3 simboliai ir trumpesnė nei 20 simbolių") @NotNull @NotEmpty(message = "Pavardė privaloma") String surname,
 			@Length(max = 15, message = "Telefonas turi būti ne ilgesnis nei 15 simbolių") @NotNull @NotEmpty(message = "Telefonas privalomas") String phone,
-			@NotNull @NotEmpty(message = "Adresas privalomas") String address, String birthDate,
 			@Email(message = "Netinkamas El. paštas", regexp = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$") @NotEmpty(message = "El-paštas privalomas") String email,
-			@NotEmpty(message = "Slaptažodis privalomas") String password, @NotEmpty String type,
-			List<Booking> bookings, @NotBlank(message = "Pasirinkite lytį") Gender gender,
-			@NotBlank(message = "Pasirinkite miestą") City city) {
+			@NotEmpty(message = "Slaptažodis privalomas") String password, @NotEmpty String type) {
 		super();
 		this.name = name;
 		this.surname = surname;
 		this.phone = phone;
-		this.address = address;
-		this.birthDate = birthDate;
+
 		this.email = email;
 		this.password = password;
 		this.type = type;
-		this.bookings = bookings;
-		this.gender = gender;
-		this.city = city;
 	}
 
 
@@ -139,17 +111,6 @@ public class Client implements UserDetails {
         this.phone = phone;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getBirthDate() {
-        return birthDate;
-    }
     
 	public String getType() {
 		return type;
@@ -159,21 +120,11 @@ public class Client implements UserDetails {
 		this.type = type;
 	}
 
-	public List<Booking> getBookings() {
-		return bookings;
-	}
-
-	public void setBookings(List<Booking> bookings) {
-		this.bookings = bookings;
-	}
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
-    }
 
     public void setEmail(String email) {
         this.email = email;
@@ -190,32 +141,6 @@ public class Client implements UserDetails {
     public String getEmail() {
         return email;
     }
-    
-    
-    public Gender getGender() {
-		return gender;
-	}
-
-	public void setGender(Gender gender) {
-		this.gender = gender;
-	}
-
-
-
-
-	public City getCity() {
-		return city;
-	}
-
-
-
-
-	public void setCity(City city) {
-		this.city = city;
-	}
-
-
-
 
 	@Override
 	public String getUsername() {
@@ -245,7 +170,7 @@ public class Client implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         HashSet<GrantedAuthority> auth = new HashSet<>();
-        auth.add(new SimpleGrantedAuthority(this.type));
+        auth.add(new SimpleGrantedAuthority(this.type)); // SUKURTI ADMINISTRATORIU - keisk user type i "admin" ir kurk new acc.
         return auth;
     }
 }

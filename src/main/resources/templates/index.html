@@ -15,7 +15,6 @@
 <link rel="stylesheet" href="./styles/styles.css">
 <link rel="stylesheet" href="./styles/navbar.css">
 
-
 </head>
 
 <body>
@@ -38,8 +37,8 @@
 	<div class="col-md-6">
 		<div class="container">
 			<div class="container-header mt-5"> <b>Žaidimų sąrašas</b></div>
-			<div class="row mt-5">
-				<div class="col">Column</div>
+			<div class="row mt-5" th:each="game: ${games}">
+				<div class="col" th:text="${game.name}"></div>
 				<div class="col">Column</div>
 				<div class="col">Column</div>
 				<div class="col">Column</div>
@@ -48,6 +47,7 @@
 				<div class="col">Column</div>
 				<div class="col">Column</div>
 				<div class="col">Column</div>
+
 			</div>
 		</div>
 	</div>

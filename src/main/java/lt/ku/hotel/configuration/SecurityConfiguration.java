@@ -29,9 +29,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		
 		http
 				.authorizeRequests()
-				.antMatchers("/admin").permitAll() //.hasAuthority("admin") TURN ON AUTHORITIES
-				.antMatchers("/update_users").permitAll()
+				.antMatchers("/admin").permitAll()//.hasAuthority("admin")//// TURN ON AUTHORITIES
+				.antMatchers("/update_users/*").permitAll()
+				.antMatchers("/games/*").permitAll()//.hasAuthority("admin")
+				.antMatchers("/games/").permitAll()//.hasAuthority("admin")
+				.antMatchers("/games/new").permitAll()//.hasAuthority("admin")
+				.antMatchers("/update/*").permitAll()
 				.antMatchers("/update").permitAll()
+				.antMatchers("/update/").permitAll()
 				.antMatchers("/**").permitAll()
 				.antMatchers("/login*").permitAll()
 				.antMatchers("/register*").permitAll()

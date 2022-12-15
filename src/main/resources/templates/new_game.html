@@ -1,7 +1,7 @@
 <html lang="lt">
 <head>
     <meta charset="utf-8">
-    <title>Sistemos valdymo skydelis</title>
+    <title>Pagrindinis</title>
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,32 +15,32 @@
     <link rel="stylesheet" href="./styles/styles.css">
     <link rel="stylesheet" href="./styles/navbar.css">
 
-
 </head>
 
 <body>
 <div th:insert="fragments/navigation.html :: nav"></div>
-<div class="body row">
-    <div class="col-md-12 mt-5">
-        <div class="container">
-            <div class="container-header mt-5 text-center"> <b>Sistemos valdymo skydelis</b></div>
-            <div class="row mt-5 text-center" >
-                <div class="col">
-                    <a href="/users/" class="btn btn-primary btn-lg">Vartotojų valdymas</a>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" action="new" th:object="${game}" enctype="multipart/form-data">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                        <div class="mb-3">
+                            <label class="form-label">Pavadinimas: </label>
+                            <input type="text" class="form-control" name="name"><br><br>
+                        </div>
+                        <input type="submit" value="Prideti" class="btn btn-dark">
+                    </form>
                 </div>
-                <div class="col">
-                    <a href="/games/" class="btn btn-primary btn-lg">Žaidimų valdymas</a>
-                </div>
-                <div class="col">
-                    <a href="/skelbimai/" class="btn btn-primary btn-lg">Skelbimų</a>
-                </div>
-                <div class="w-100 mt-5"></div>
 
             </div>
         </div>
     </div>
 </div>
+<main class="main-container">
 
+</main>
 
 </body>
 </html>

@@ -1,8 +1,5 @@
 package lt.ku.hotel.entities;
-
 import javax.persistence.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @Entity

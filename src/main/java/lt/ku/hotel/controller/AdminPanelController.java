@@ -8,12 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class AdminPanelController {
     @GetMapping("/admin")
     public String adminPanel(Model model) {
-
         return "admin";
     }
     @PostMapping("/admin")
     public String submitForm(){
-
         return "admin";
     }
 
